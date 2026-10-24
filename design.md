@@ -10,8 +10,8 @@ Everything else — the skills' judgement, TDD, review loops, the scripts — is
 
 ## Rules for the diff
 
-- **The plugin is still called `superpowers`.** Skills name each other `superpowers:<skill>` 41
-  times across 11 files; renaming would make every one of those lines conflict on every merge.
+- **The plugin is still called `superpowers`.** Skills name each other `superpowers:<skill>` about
+  50 times (49 in 7.0.1); renaming would make every one of those lines conflict on every merge.
 - **Change only the lines that name a file or a todo.** No rewording, no restyling. Every changed
   line is a merge conflict waiting to happen; the smaller the diff, the cheaper upstream stays.
 - **Nothing private goes in.** The fork is public: no host names, addresses, employer, or work
