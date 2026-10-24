@@ -1,5 +1,10 @@
 # Superpowers
 
+> **This is a fork.** The original is [obra/superpowers](https://github.com/obra/superpowers) by Jesse Vincent (MIT).
+> It exists to run superpowers through [claude-todo](https://github.com/moatingodseye/claude-todo), a per-repo task queue for Claude Code,
+> instead of plan and spec markdown files: a plan becomes a queue heading with one part per task.
+> Why and how is in [design.md](design.md). Upstream changes are merged in as they land; everything below is upstream's README.
+
 Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.
 
 ## Table of Contents
