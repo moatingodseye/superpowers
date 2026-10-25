@@ -30,6 +30,14 @@ When multiple skills apply, process skills come first — they set the approach,
 - "Let's build X" → superpowers:brainstorming first, then implementation skills.
 - "Fix this bug" → superpowers:systematic-debugging first, then domain skills.
 
+## Testing and Review Rhythm
+
+Every session, with a plan or without one:
+
+- **Test each change as you make it.** Before moving on, run the tests that cover what you changed and what it can affect — not the whole suite. A change no test exercises gets one first (superpowers:test-driven-development).
+- **Run the regression suite later, once.** The full suite runs at the end of a piece of work: the last part of a queue heading, before a push or a deploy, or at the end of the session. Say what it ran and what it returned; if it did not run, say that.
+- **Review regularly.** At the end of each queue heading, and otherwise every five finished tasks or before a deploy, whichever comes first: review the diff since the last review with superpowers:requesting-code-review, with a fresh reviewer where you have one. Fix each finding with a test that fails first.
+
 ## Red Flags
 
 These thoughts mean STOP—you're rationalizing:

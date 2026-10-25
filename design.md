@@ -52,7 +52,20 @@ Both go in claude-todo's own design and queue; this fork depends on a release th
 | writing-plans | "Save plans to" and the two hand-over sentences name the queue heading |
 | executing-plans | todo lines → queue parts; plan file from `todo plan`; Finish posts rulings to the heading |
 | subagent-driven-development | the same, for its setup, flowchart labels and Finish |
-| using-superpowers | "create a todo per item" for a skill's checklist stays a harness todo: a checklist is how one step is done, not queued work |
+| using-superpowers | "create a todo per item" for a skill's checklist stays a harness todo: a checklist is how one step is done, not queued work. Plus **Testing and Review Rhythm**, below |
+
+## Testing and Review Rhythm — RB, 2026-10-25
+
+RB: *"ensure todo-powers tells agents to do change tests, then regression later and to do regular
+reviews"*. Upstream tests and reviews inside a plan's execution only; a session working the queue
+task by task, with no plan, never meets those rules. So `using-superpowers`, which every session loads
+at start, gains one section of three rules: test each change against what it can affect; run the full
+suite once, at the end of a heading, before a push or deploy, or at session end; review the diff
+every heading, or every five finished tasks or before a deploy, whichever is first.
+
+It is the one place this fork adds wording rather than renaming a file or a todo. It is a new section,
+not edited upstream lines, so a merge from upstream conflicts only if upstream rewrites the lines
+around it.
 
 ## Installing it
 
