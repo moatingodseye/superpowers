@@ -37,7 +37,8 @@ with what it costs if wrong. The list is exhaustive: if the ledger holds a
 ruling, the list holds it. That list is the only place the decisions you
 took on your human partner's behalf reach them — they read it and rework
 whatever you got wrong. A ruling that dies with the workspace was a decision
-made in secret.
+made in secret. Post the list to the plan's heading too,
+`todo comment <heading> "<the list>"`, so it outlives the workspace.
 
 When the final whole-branch review is clean and its fixes are merged,
 delete this plan's workspace (`rm -rf <workspace>`) — the git history is

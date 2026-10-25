@@ -77,7 +77,7 @@ digraph process {
         "Plan wrong? Rule and ledger. Code wrong? systematic-debugging" [shape=box];
         "Commit as the plan's commit steps say" [shape=box];
         "Completion contract met?" [shape=diamond];
-        "task-done: run tests, ledger the result; mark todo complete" [shape=box];
+        "task-done: run tests, ledger the result; todo done the part" [shape=box];
     }
 
     "Setup: worktree, workspace + ledger, read plan + spec, pre-flight scan" [shape=box];
@@ -95,8 +95,8 @@ digraph process {
     "Step output matches plan's Expected?" -> "Commit as the plan's commit steps say" [label="yes, last step"];
     "Commit as the plan's commit steps say" -> "Completion contract met?";
     "Completion contract met?" -> "Work the steps in order: TDD, run every verification, read every output" [label="no - finish the task"];
-    "Completion contract met?" -> "task-done: run tests, ledger the result; mark todo complete" [label="yes"];
-    "task-done: run tests, ledger the result; mark todo complete" -> "More tasks remain?";
+    "Completion contract met?" -> "task-done: run tests, ledger the result; todo done the part" [label="yes"];
+    "task-done: run tests, ledger the result; todo done the part" -> "More tasks remain?";
     "More tasks remain?" -> "task-start: brief + BASE; read the brief" [label="yes"];
     "More tasks remain?" -> "Final whole-branch review (fresh reviewer if you have one)" [label="no"];
     "Final whole-branch review (fresh reviewer if you have one)" -> "Re-grade, then: Critical/Important → ONE fix pass, each fix RED→GREEN + green suite; Minor → ledger";
@@ -115,13 +115,17 @@ partner's explicit consent.
 Conversation memory does not survive compaction. An inline executor that
 loses its place re-implements tasks whose commits already exist — the same
 failure as a controller re-dispatching them, paid for in your own context.
-Track progress in a ledger file, not only in todos. Harness todos are a
-live view; the ledger is the record.
+Track progress in a ledger file, not only in the queue. The queue's parts
+are a live view; the ledger is the record.
 
 The workspace and ledger are shared with superpowers:subagent-driven-development
 — same directory, same format — so a plan can change executors mid-flight
 and the new one resumes from the same ledger.
 
+- The plan is a queue heading with parts. PLAN_FILE is
+  `<repo-root>/.superpowers/sdd/plan-<heading>.md`, written by
+  `todo plan <heading> .superpowers/sdd/plan-<heading>.md`. Never edit it;
+  run that again whenever it is missing or the parts have changed.
 - Each plan owns a workspace: at skill start, run
   `../subagent-driven-development/scripts/sdd-workspace PLAN_FILE` — it
   prints the plan's git-ignored directory
@@ -140,8 +144,8 @@ and the new one resumes from the same ledger.
 - `git clean -fdx` will destroy the workspace (it's git-ignored scratch);
   if that happens, recover from `git log`.
 
-Read the plan once, note its context and Global Constraints, and create a
-todo per task. If the plan names a Spec, read that too: the spec is the
+Read the plan once, note its context and Global Constraints; its parts
+are the tasks, so create no todos. If the plan names a Spec, read that too: the spec is the
 authority the plan argues from, and conflicts inside the plan resolve
 against it. A plan with no reachable spec gets a ledger note saying so —
 rulings made without one are provisional.
@@ -174,7 +178,7 @@ in the workspace and read its tail; read a brief, not the whole plan.
   Read the brief for every task, including ones you remember from setup:
   what you remember is a summary, the brief has the exact values,
   signatures, and test cases.
-- Mark the task's todo in_progress.
+- Start the task's part: `todo next`.
 
 Every tool call is a turn that re-reads your whole context. Bookkeeping
 rides along with work — a ledger append in the same call as the commit,
@@ -229,7 +233,7 @@ if they pass — appends the completion line to the ledger:
 `Task <N>: complete (commits <base7>..<head7>, tests: <command> → <result>)`
 
 A failing run records nothing; the task is not complete. When it records,
-mark the todo complete and take the next task.
+`todo done <part> "<that ledger line>"` and take the next task.
 
 ## Final Review
 
@@ -295,7 +299,9 @@ Before you delete anything, collect every ledger line containing
 made them, each with what it costs if wrong, and every `minor (deferred)`
 line under "Deferred minors". Both lists are exhaustive. Your final
 message is the only place the decisions you took on your human partner's
-behalf — and the findings you chose not to act on — reach them.
+behalf — and the findings you chose not to act on — reach them. Post both
+lists to the plan's heading too, `todo comment <heading> "<the lists>"`:
+the workspace is deleted next, and the heading's thread outlives it.
 
 When the final review is clean and its fixes are committed, delete this
 plan's workspace directory — the git history is the record now. Sibling
