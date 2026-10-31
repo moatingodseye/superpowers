@@ -52,7 +52,8 @@ Both go in claude-todo's own design and queue; this fork depends on a release th
 | writing-plans | "Save plans to" and the two hand-over sentences name the queue heading |
 | executing-plans | todo lines → queue parts; plan file from `todo plan`; Finish posts rulings to the heading |
 | subagent-driven-development | the same, for its setup, flowchart labels and Finish |
-| using-superpowers | "create a todo per item" for a skill's checklist stays a harness todo: a checklist is how one step is done, not queued work. Plus **Testing and Review Rhythm**, below |
+| using-superpowers | "create a todo per item" for a skill's checklist stays a harness todo: a checklist is how one step is done, not queued work. Plus **Testing and Review Rhythm**, below, which starts with sizing the work |
+| writing-plans | plus **Test and Review Points**, below |
 
 ## Testing and Review Rhythm — RB, 2026-10-25
 
@@ -63,9 +64,27 @@ at start, gains one section of three rules: test each change against what it can
 suite once, at the end of a heading, before a push or deploy, or at session end; review the diff
 every heading, or every five finished tasks or before a deploy, whichever is first.
 
-It is the one place this fork adds wording rather than renaming a file or a todo. It is a new section,
-not edited upstream lines, so a merge from upstream conflicts only if upstream rewrites the lines
-around it.
+It is one of the two places this fork adds wording rather than renaming a file or a todo (the other
+is below). Each is a new section, not edited upstream lines, so a merge from upstream conflicts only
+if upstream rewrites the lines around it.
+
+## Size the work first; a plan places its test and review points — RB, 2026-10-25
+
+RB on todo #700: *"that is a todo-powers design failure it should have broken down into nice steps
+and planned when to test when to review etc"*. The evidence was penates #666 on 2026-10-24: one task
+(the Payment and Pot editors) grew for 45 minutes with no `done` — two sheets, a new stored field, a
+deploy and a Windows build — from 19% to 32% of context, and the compactor, which runs only after a
+`done`, never got its turn. Nothing told the session to stop and plan before starting.
+
+- **`using-superpowers`, Testing and Review Rhythm, gains a first rule: size it before starting.**
+  A task that will need more than one commit, or touches more than one area, is planned first with
+  `writing-plans` — a queue heading with parts — and the parts are worked one `done` at a time.
+- **`writing-plans` gains a section, Test and Review Points.** A plan names, as parts of their own,
+  where the full regression suite runs and where the diff is reviewed: at least one of each, the
+  review last before the heading closes, and one more after every five parts. Each task's own tests
+  stay in the task's steps, as upstream has them.
+
+claude-todo does not enforce task size (RB, #700): it is this fork's job to make the work small.
 
 ## Installing it
 

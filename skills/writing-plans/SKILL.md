@@ -40,6 +40,13 @@ deliverable needs them; split only where a reviewer could meaningfully
 reject one task while approving its neighbor. Each task ends with an
 independently testable deliverable.
 
+## Test and Review Points
+
+A plan places its own checkpoints, as parts of their own: where the full regression suite runs and
+where the diff since the last review is reviewed (superpowers:requesting-code-review). At least one
+of each; the review is the last part before the heading closes, and there is one more after every
+five tasks. Each task's own tests stay in its steps.
+
 ## Step Granularity
 
 **Each step is one action with a checkable result:**
